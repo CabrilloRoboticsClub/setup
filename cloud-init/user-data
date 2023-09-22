@@ -1,6 +1,6 @@
 #cloud-config
 
-write_files:
-- content: |
-    Testing... 
-  path: /testing
+growpart:
+  mode: auto
+  devices: ["/"]
+  ignore_growroot_disabled: false

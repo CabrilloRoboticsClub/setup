@@ -1,0 +1,11 @@
+--- cloud-init.service	2023-09-22 16:23:42.205834032 -0700
++++ /usr/lib/systemd/system/cloud-init.service	2023-09-22 16:26:43.123253329 -0700
+@@ -10,7 +10,7 @@
+ Before=network-online.target
+ Before=sshd-keygen.service
+ Before=sshd.service
+-Before=sysinit.target
++After=NetworkManager-wait-online.service
+ Before=shutdown.target
+ Conflicts=shutdown.target
+ Before=systemd-user-sessions.service
