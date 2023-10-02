@@ -65,8 +65,9 @@
       - python3-flake8-quotes 
       - python3-pytest-repeat 
       - python3-pytest-rerunfailures
-      - ros-humble-ros-core
-      - ros-humble-rclpy
+      - ros-iron-ros-base
+      - ros-iron-rclpy
+      - ros-iron-rclcpp
       - python3-rosdep2
       - python3-colcon-common-extensions
     state: present
