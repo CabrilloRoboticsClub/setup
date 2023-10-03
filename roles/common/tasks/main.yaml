@@ -27,7 +27,7 @@
 ---
 
 - name: Installing extra packages needed by Seahawk
-  apt:
+  ansible.builtin.apt:
     name:
       - libavdevice-dev 
       - libavformat-dev 
@@ -46,7 +46,7 @@
 
 - name: Installing Python packages in your home directory with PIP
   become: false
-  pip:
+  ansible.builtin.pip:
     name:
     - setuptools
     - Adafruit-Blinka
