@@ -26,6 +26,18 @@
 #
 ---
 
+- name: Create temporary directory
+  ansible.builtin.tempfile:
+    state: directory
+    suffix: ansible-common
+  register: tempdir_common
+
+- name: Copy files to remote
+  ansible.builtin.copy:
+    src: files/
+    dest: {{ tempdir_common.path }}
+  when: tempdir_common.path is defined
+
 - name: Installing extra packages needed by Seahawk
   ansible.builtin.apt:
     name:
@@ -47,30 +59,10 @@
 - name: Installing Python packages in your home directory with PIP
   become: false
   ansible.builtin.pip:
-    name:
-    - setuptools
-    - Adafruit-Blinka
-    - adafruit-circuitpython-bme280
-    - adafruit-circuitpython-bno08x
-    - adafruit-circuitpython-busdevice
-    - adafruit-circuitpython-motor
-    - adafruit-circuitpython-motorkit
-    - adafruit-circuitpython-pca9685
-    - adafruit-circuitpython-register
-    - adafruit-circuitpython-requests
-    - adafruit-circuitpython-servokit
-    - adafruit-circuitpython-typing
-    - Adafruit-PlatformDetect
-    - Adafruit-PureIO
-    - adafruit-python-shell
-    - args
-    - clint
-    - pyftdi
-    - pyserial
-    - pyusb
-    - RPi.GPIO
-    - typing_extensions
-    - hidapi
-    - wheel
-    - pip
+    requirements: "{{ tempdir_common.path }}/requirements.txt"
 
+- name: Cleanup temporary directory
+  ansible.builtin.file:
+    path: {{ tempdir_common.path }}
+    state: absent
+  when: tempdir_common.path is defined

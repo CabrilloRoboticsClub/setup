@@ -1,0 +1,11 @@
+args==0.1.0
+clint==0.5.1
+hidapi==0.14.0
+pip==23.2.1
+pyftdi==0.55.0
+pyserial==3.5
+pyusb==1.2.1
+RPi.GPIO==0.7.1
+setuptools==65.5.0
+typing_extensions==4.8.0
+wheel==0.41.2
