@@ -35,7 +35,7 @@
 - name: Copy files to remote
   ansible.builtin.copy:
     src: files/
-    dest: {{ tempdir_common.path }}
+    dest: "{{ tempdir_common.path }}"
   when: tempdir_common.path is defined
 
 - name: Installing extra packages needed by Seahawk
@@ -63,6 +63,6 @@
 
 - name: Cleanup temporary directory
   ansible.builtin.file:
-    path: {{ tempdir_common.path }}
+    path: "{{ tempdir_common.path }}"
     state: absent
   when: tempdir_common.path is defined
